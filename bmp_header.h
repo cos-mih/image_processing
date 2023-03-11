@@ -31,7 +31,7 @@ typedef struct
 
 typedef struct
 {
-    unsigned int R, G, B;
+    unsigned char R, G, B;
 } pixel;
 
 typedef struct
@@ -43,7 +43,10 @@ typedef struct
 
 #pragma pack()
 
-
+bmp *init_bmp_structure();
 void Save(bmp *);
 void Edit(bmp *);
+void Insert(bmp *);
+void Set_params(pixel *, int *);
+void Draw(bmp *, pixel, int);
 void Quit(char *, bmp *);
