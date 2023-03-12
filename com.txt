@@ -1,0 +1,4 @@
+edit images/lightning.bmp
+save lightning.bmp
+quit
+

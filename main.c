@@ -24,7 +24,7 @@ int main()
     draw_color.B = draw_color.G = draw_color.R = '\0';
     int line_width = 1;
 
-    while (scanf("%s ", command)) {
+    while (scanf("%s", command)) {
         if (!strcmp(command, "save")) {
             Save(BMP);
             continue;
@@ -50,9 +50,14 @@ int main()
             continue;
         }
 
+        if (!strcmp(command, "fill")) {
+            Fill(BMP, draw_color);
+            continue;
+        }
+
         if (!strcmp(command, "quit")) {
             Quit(command, BMP);
-            break;
+            return 0;
         }
     }
 

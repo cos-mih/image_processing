@@ -49,4 +49,5 @@ void Edit(bmp *);
 void Insert(bmp *);
 void Set_params(pixel *, int *);
 void Draw(bmp *, pixel, int);
+void Fill(bmp *, pixel);
 void Quit(char *, bmp *);

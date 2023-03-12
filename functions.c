@@ -267,6 +267,44 @@ void Draw(bmp *BMP, pixel draw_color, int line_width) {
     }
 }
 
+int has_color(pixel p1, pixel p2) {
+    return (p1.R == p2.R) && (p1.G == p2.G) && (p1.B == p2.B);
+}
+
+int is_valid_line(bmp *BMP, int x) {
+    return (0 <= x) && (x < BMP->ih->height);
+} 
+
+int is_valid_column(bmp *BMP, int y) {
+    return (0 <= y) && (y < BMP->ih->width);
+}
+
+void fill_pixel(bmp *BMP, pixel old_color, pixel draw_color, int y, int x) {
+    //printf("%d %d\n", y, x);
+    if (!is_valid_line(BMP, x) || !is_valid_column(BMP, y)) {
+        return;
+    }
+
+    if (!has_color(BMP->bitmap[x][y], old_color)) {
+        return;
+    }
+
+    BMP->bitmap[x][y] = draw_color;
+
+    fill_pixel(BMP, old_color, draw_color, y, x - 1);
+    fill_pixel(BMP, old_color, draw_color, y, x + 1);
+    fill_pixel(BMP, old_color, draw_color, y - 1, x);
+    fill_pixel(BMP, old_color, draw_color, y + 1, x);
+}
+
+void Fill(bmp *BMP, pixel draw_color) {
+    int y, x;
+    scanf("%d %d", &y, &x);
+
+    pixel old_color = BMP->bitmap[x][y];
+    fill_pixel(BMP, old_color, draw_color, y, x);
+}
+
 void Quit(char *command, bmp *BMP)
 {
     free(command);
